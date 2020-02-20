@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{{ kisse_name }} </title>
+</head>
+<body>
+
+<h1>{{ kisse_name }}</h1>
+
+<p>
+    {% for payment in payments %}
+    <p>
+    <b>{{ payment["payer_name"] }}</b>
+    är skyldig
+    <b>{{ payment["recipient_name"] }}</b>
+    {{ payment["amount"] }}
+    pengar
+    </p>
+    {% endfor %}
+</p>
+
+<a href="{{ url_for('kisse', kisse_id=kisse_id) }}">Tillbaka</a>
+
+</body>
+</html>

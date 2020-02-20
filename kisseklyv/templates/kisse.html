@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{{ description  }}</title>
+</head>
+<body>
+    <a href="{{ url_for('index') }}">Tillbaka till start</a>
+    <h1>{{ description }}</h1>
+    <h2>Personer</h2>
+    {% for person in people %}
+    <p>{{ person }}</p>
+    {% endfor %}
+    <h3>Lägg till person</h3>
+    <form action="" method="post" novalidate>
+        {{ add_person_form.hidden_tag() }}
+        <p>
+        {{ add_person_form.name.label }} <br>
+        {{ add_person_form.name(size=32) }}
+        </p>
+        <p>
+            {{ add_person_form.submit() }}
+        </p>
+    </form>
+    <h2>Utlägg</h2>
+    {% for expense in expenses %}
+    <p>
+        {{ expense["person"] }} betalade
+        {{ expense["amount"] }} pengar för
+        {{ expense["description"] }}
+    </p>
+    {% endfor %}
+    <h3>Lägg till utlägg</h3>
+    <form action="" method="post" novalidate>
+        {{ add_expense_form.hidden_tag() }}
+        <p>
+            {{ add_expense_form.description.label }} <br>
+            {{ add_expense_form.description(size=32) }}
+        </p>
+        <p>
+            {{ add_expense_form.amount.label }} <br>
+            {{ add_expense_form.amount(size=32) }}
+        </p>
+        <p>
+        {{ add_expense_form.payer.label }} <br>
+        {{ add_expense_form.payer() }}
+        </p>
+        <p>
+            {{ add_expense_form.submit() }}
+        </p>
+    </form>
+<hr>
+
+    <form action="" method="post" novalidate>
+        {{ add_expense_form.hidden_tag() }}
+        <p>
+            {{ klyv_kisse_form.submit() }}
+        </p>
+    </form>
+</body>
+</html>
